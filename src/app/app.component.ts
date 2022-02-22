@@ -1,4 +1,6 @@
+import { SignupForm } from './../../validators/SignupForm.validators';
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-reactive-form';
+  
+  form = new FormGroup({
+    username : new FormControl('',[Validators.required,SignupForm.checkB]),
+    email : new FormControl('',Validators.required),
+    password : new FormControl('',Validators.required),
+  })
+
+  get username(){
+    return this.form.get('username')
+  }
 }
